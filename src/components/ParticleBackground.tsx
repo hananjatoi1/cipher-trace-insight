@@ -19,15 +19,25 @@ export function ParticleBackground() {
       vx: number;
       vy: number;
       size: number;
+      color: string;
+      opacity: number;
     }> = [];
 
-    for (let i = 0; i < 50; i++) {
+    const colors = [
+      'rgba(0, 255, 255, ', // cyan primary
+      'rgba(170, 100, 255, ', // purple secondary
+      'rgba(50, 255, 180, ', // green accent
+    ];
+
+    for (let i = 0; i < 80; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        size: Math.random() * 2.5 + 0.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        opacity: Math.random() * 0.4 + 0.2,
       });
     }
 
@@ -45,7 +55,16 @@ export function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 255, 255, ${0.3 + Math.random() * 0.3})`;
+        
+        // Add glow effect
+        const gradient = ctx.createRadialGradient(
+          particle.x, particle.y, 0,
+          particle.x, particle.y, particle.size * 2
+        );
+        gradient.addColorStop(0, `${particle.color}${particle.opacity})`);
+        gradient.addColorStop(1, `${particle.color}0)`);
+        
+        ctx.fillStyle = gradient;
         ctx.fill();
 
         // Draw connections
@@ -55,12 +74,13 @@ export function ParticleBackground() {
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 180) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(0, 255, 255, ${0.1 * (1 - distance / 150)})`;
-            ctx.lineWidth = 0.5;
+            const alpha = 0.15 * (1 - distance / 180);
+            ctx.strokeStyle = `${particle.color}${alpha})`;
+            ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         });
@@ -84,7 +104,7 @@ export function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.5 }}
     />
   );
 }
