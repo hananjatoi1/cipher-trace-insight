@@ -8,9 +8,16 @@ export default function Dashboard() {
 
   const handleSearch = (type: string) => (value: string) => {
     console.log(`Searching ${type}:`, value);
-    if (type === 'transaction') navigate('/transactions');
-    if (type === 'wallet') navigate('/wallet');
-    if (type === 'kyc') navigate('/kyc');
+    
+    if (type === 'domain') {
+      window.open(`https://ens.domains/`, '_blank');
+    } else if (type === 'transaction') {
+      window.open(`https://etherscan.io/tx/${value}`, '_blank');
+    } else if (type === 'wallet') {
+      window.open(`https://etherscan.io/address/${value}`, '_blank');
+    } else if (type === 'kyc') {
+      navigate('/kyc');
+    }
   };
 
   return (
