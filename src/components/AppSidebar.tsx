@@ -1,5 +1,6 @@
 import { Home, Search, Wallet, Users, ShieldAlert, Network, FileText, Settings, Lock } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import logo from "@/assets/logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -28,10 +29,10 @@ export function AppSidebar() {
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarContent>
         <div className="p-6 border-b border-sidebar-border">
-          <div className="flex items-center gap-2">
-            <ShieldAlert className="h-8 w-8 text-primary" />
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="CSB Logo" className="h-12 w-12 object-contain" />
             <div>
-              <h1 className="text-xl font-bold text-primary">CryptoTrace</h1>
+              <h1 className="text-lg font-bold text-primary">CSB-CryptoTrace</h1>
               <p className="text-xs text-muted-foreground">Intelligence Platform</p>
             </div>
           </div>
