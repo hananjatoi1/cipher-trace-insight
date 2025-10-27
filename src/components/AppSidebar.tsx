@@ -28,35 +28,24 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarContent>
-        <div className="p-5 border-b border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent relative overflow-hidden">
-          {/* Animated background effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent animate-shimmer"></div>
-          
-          <div className="relative flex items-center gap-4 group">
-            {/* Logo with glow effect */}
-            <div className="relative flex-shrink-0">
-              <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl group-hover:bg-primary/40 transition-all duration-700 animate-pulse"></div>
-              <div className="relative w-16 h-16 flex items-center justify-center">
-                <img 
-                  src={logo} 
-                  alt="CSB Logo" 
-                  className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.4)] group-hover:drop-shadow-[0_0_25px_rgba(99,102,241,0.6)] transition-all duration-500 group-hover:scale-105" 
-                />
-              </div>
+        <div className="p-4 border-b border-primary/20 bg-gradient-to-br from-primary/5 to-transparent backdrop-blur-sm">
+          <div className="flex items-center gap-3 group hover:scale-[1.02] transition-all duration-300">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
+              <img 
+                src={logo} 
+                alt="CSB Logo" 
+                className="h-14 w-14 object-contain relative z-10 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.3)] group-hover:drop-shadow-[0_0_20px_rgba(var(--primary-rgb),0.5)] transition-all duration-500" 
+              />
             </div>
-            
-            {/* Text content */}
-            <div className="flex-1 min-w-0 flex flex-col justify-center">
-              <div className="flex items-baseline gap-2">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent animate-fade-in leading-tight">
-                  CSB
-                </h1>
-                <span className="text-primary/40 font-light">|</span>
-                <p className="text-lg font-semibold bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent tracking-wide leading-tight">
-                  CryptoTrace
-                </p>
-              </div>
-              <p className="text-[11px] text-muted-foreground/80 uppercase tracking-[0.15em] font-medium mt-1.5 ml-0.5">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent animate-fade-in">
+                CSB
+              </h1>
+              <p className="text-base font-semibold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent tracking-wide">
+                CryptoTrace
+              </p>
+              <p className="text-[10px] text-muted-foreground/70 uppercase tracking-widest font-medium mt-0.5">
                 Intelligence Platform
               </p>
             </div>
