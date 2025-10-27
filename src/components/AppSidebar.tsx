@@ -39,9 +39,6 @@ export function AppSidebar() {
               />
             </div>
             <div className="flex-1 min-w-0 text-center">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent animate-fade-in">
-                CSB
-              </h1>
               <p className="text-base font-semibold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent tracking-wide">
                 CryptoTrace
               </p>
