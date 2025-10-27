@@ -28,13 +28,26 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarContent>
-        <div className="p-6 border-b border-sidebar-border">
-          <div className="flex flex-col items-center gap-3">
-            <img src={logo} alt="CSB Logo" className="h-16 w-16 object-contain mix-blend-lighten dark:mix-blend-screen" style={{ filter: 'brightness(1.2) contrast(1.1)' }} />
-            <div className="text-center">
-              <h1 className="text-xl font-bold text-primary">CSB</h1>
-              <p className="text-sm text-muted-foreground">CryptoTrace</p>
-              <p className="text-xs text-muted-foreground/70">Intelligence Platform</p>
+        <div className="p-4 border-b border-primary/20 bg-gradient-to-br from-primary/5 to-transparent backdrop-blur-sm">
+          <div className="flex items-center gap-3 group hover:scale-[1.02] transition-all duration-300">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
+              <img 
+                src={logo} 
+                alt="CSB Logo" 
+                className="h-14 w-14 object-contain relative z-10 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.3)] group-hover:drop-shadow-[0_0_20px_rgba(var(--primary-rgb),0.5)] transition-all duration-500" 
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent animate-fade-in">
+                CSB
+              </h1>
+              <p className="text-base font-semibold text-foreground/90 tracking-wide">
+                CryptoTrace
+              </p>
+              <p className="text-[10px] text-muted-foreground/70 uppercase tracking-widest font-medium mt-0.5">
+                Intelligence Platform
+              </p>
             </div>
           </div>
         </div>
