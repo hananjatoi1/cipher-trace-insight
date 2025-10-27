@@ -29,11 +29,12 @@ export function AppSidebar() {
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarContent>
         <div className="p-6 border-b border-sidebar-border">
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="CSB Logo" className="h-12 w-12 object-contain" />
-            <div>
-              <h1 className="text-lg font-bold text-primary">CSB-CryptoTrace</h1>
-              <p className="text-xs text-muted-foreground">Intelligence Platform</p>
+          <div className="flex flex-col items-center gap-3">
+            <img src={logo} alt="CSB Logo" className="h-16 w-16 object-contain mix-blend-lighten dark:mix-blend-screen" style={{ filter: 'brightness(1.2) contrast(1.1)' }} />
+            <div className="text-center">
+              <h1 className="text-xl font-bold text-primary">CSB</h1>
+              <p className="text-sm text-muted-foreground">CryptoTrace</p>
+              <p className="text-xs text-muted-foreground/70">Intelligence Platform</p>
             </div>
           </div>
         </div>
