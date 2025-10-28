@@ -10,7 +10,7 @@ export default function Dashboard() {
     console.log(`Searching ${type}:`, value);
     
     if (type === 'domain') {
-      window.open(`https://app.ens.domains/${value}`, '_blank');
+      window.open(`https://blockchair.com/search?q=${encodeURIComponent(value)}`, '_blank');
     } else if (type === 'transaction') {
       window.open(`https://etherscan.io/tx/${value}`, '_blank');
     } else if (type === 'wallet') {
