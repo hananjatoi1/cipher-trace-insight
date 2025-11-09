@@ -40,7 +40,7 @@ export function AppSidebar() {
             </div>
             <div className="flex-1 min-w-0 text-center">
               <p className="text-base font-semibold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent tracking-wide">
-                CryptoTrace
+                CryptoTrace & Track
               </p>
               <p className="text-[9px] text-muted-foreground/80 tracking-wider font-medium mt-1">
                 Developed by Cyber Security Team – NIFTAC
