@@ -29,20 +29,21 @@ export function AppSidebar() {
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarContent>
         <div className="pt-6 pb-4 px-4 border-b border-primary/20 bg-gradient-to-br from-primary/5 to-transparent backdrop-blur-sm">
-          <div className="flex items-center gap-3 group hover:scale-[1.02] transition-all duration-300">
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
+          <div className="flex items-center justify-center gap-4 group">
+            <div className="relative flex-shrink-0">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/40 transition-all duration-500 animate-pulse"></div>
+              <div className="absolute inset-0 bg-secondary/10 rounded-full blur-2xl group-hover:blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
               <img 
                 src={logo} 
-                alt="CSB Logo" 
-                className="h-14 w-14 object-contain relative z-10 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.3)] group-hover:drop-shadow-[0_0_20px_rgba(var(--primary-rgb),0.5)] transition-all duration-500" 
+                alt="PSS Logo" 
+                className="h-16 w-16 object-contain relative z-10 drop-shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)] group-hover:drop-shadow-[0_0_25px_rgba(var(--primary-rgb),0.6)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-3" 
               />
             </div>
-            <div className="flex-1 min-w-0 text-center">
-              <p className="text-base font-semibold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent tracking-wide">
+            <div className="flex-1 min-w-0">
+              <p className="text-lg font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent tracking-wide group-hover:tracking-wider transition-all duration-300">
                 CryptoTrace & Track
               </p>
-              <p className="text-[9px] text-muted-foreground/80 tracking-wider font-medium mt-1">
+              <p className="text-[10px] text-muted-foreground/80 tracking-wider font-medium mt-1.5 group-hover:text-muted-foreground/100 transition-colors duration-300">
                 Developed by Cyber Security Team – NIFTAC
               </p>
             </div>
