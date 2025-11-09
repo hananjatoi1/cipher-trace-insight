@@ -8,93 +8,93 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Cyber Forensic Intelligence Theme */
-    --background: 218 45% 4%;
-    --foreground: 180 100% 95%;
+    /* Military-Grade Surveillance Tech Theme */
+    --background: 140 60% 4%;
+    --foreground: 45 40% 95%;
 
-    --card: 218 40% 8%;
-    --card-foreground: 180 100% 95%;
-    --card-glass: 218 40% 10%;
+    --card: 140 50% 8%;
+    --card-foreground: 45 35% 95%;
+    --card-glass: 140 50% 10%;
 
-    --popover: 218 45% 6%;
-    --popover-foreground: 180 100% 95%;
+    --popover: 140 50% 10%;
+    --popover-foreground: 45 35% 95%;
 
-    /* Electric Cyan Primary */
-    --primary: 180 100% 55%;
-    --primary-foreground: 218 45% 4%;
-    --primary-glow: 180 100% 65%;
-    --primary-dim: 180 80% 35%;
+    /* Deep Military Green Primary */
+    --primary: 150 55% 28%;
+    --primary-foreground: 45 35% 90%;
+    --primary-glow: 150 50% 45%;
+    --primary-dim: 150 45% 15%;
 
-    /* Neon Purple Secondary */
-    --secondary: 270 85% 70%;
-    --secondary-foreground: 218 45% 4%;
-    --secondary-glow: 270 85% 80%;
-    --secondary-dim: 270 70% 45%;
+    /* Gold/Brass Secondary */
+    --secondary: 45 75% 55%;
+    --secondary-foreground: 140 60% 8%;
+    --secondary-glow: 45 80% 70%;
+    --secondary-dim: 45 50% 35%;
 
-    /* Cyber Green Accent */
-    --accent: 155 95% 60%;
-    --accent-foreground: 218 45% 4%;
-    --accent-glow: 155 95% 70%;
+    /* Tech Teal Accent */
+    --accent: 180 65% 48%;
+    --accent-foreground: 45 35% 95%;
+    --accent-glow: 180 70% 62%;
 
-    --muted: 218 35% 18%;
-    --muted-foreground: 180 40% 65%;
+    --muted: 150 30% 18%;
+    --muted-foreground: 150 10% 60%;
 
-    /* Critical Red */
-    --destructive: 0 90% 65%;
-    --destructive-foreground: 180 100% 95%;
-    --destructive-glow: 0 90% 75%;
+    /* Tactical Red */
+    --destructive: 0 75% 58%;
+    --destructive-foreground: 45 35% 95%;
+    --destructive-glow: 0 75% 72%;
 
-    /* Warning Amber */
-    --warning: 40 100% 60%;
-    --warning-foreground: 218 45% 4%;
+    /* Tactical Orange */
+    --warning: 38 85% 55%;
+    --warning-foreground: 140 60% 8%;
     
-    /* Success Green */
-    --success: 142 76% 56%;
-    --success-foreground: 218 45% 4%;
+    /* Operational Green */
+    --success: 150 65% 45%;
+    --success-foreground: 45 35% 95%;
 
-    --border: 218 35% 22%;
-    --input: 218 35% 15%;
-    --ring: 180 100% 55%;
+    --border: 150 40% 20%;
+    --input: 150 40% 12%;
+    --ring: 45 75% 55%;
 
     --radius: 0.75rem;
 
     /* Enhanced Glassmorphism */
-    --glass-bg: 218 40% 10% / 0.5;
-    --glass-border: 180 100% 55% / 0.15;
-    --glass-hover: 218 40% 12% / 0.6;
+    --glass-bg: 140 50% 10% / 0.65;
+    --glass-border: 45 75% 55% / 0.18;
+    --glass-hover: 140 50% 12% / 0.75;
     
     /* Multi-layered Glow Effects */
-    --glow-primary: 0 0 25px hsl(180 100% 55% / 0.4), 0 0 50px hsl(180 100% 55% / 0.2);
-    --glow-secondary: 0 0 25px hsl(270 85% 70% / 0.4), 0 0 50px hsl(270 85% 70% / 0.2);
-    --glow-accent: 0 0 25px hsl(155 95% 60% / 0.4), 0 0 50px hsl(155 95% 60% / 0.2);
-    --glow-strong: 0 0 35px hsl(180 100% 55% / 0.6), 0 0 70px hsl(180 100% 55% / 0.3);
-    --glow-intense: 0 0 40px hsl(180 100% 55% / 0.8), 0 0 80px hsl(180 100% 55% / 0.4), 0 0 120px hsl(180 100% 55% / 0.2);
+    --glow-primary: 0 0 25px hsl(150 55% 28% / 0.5), 0 0 50px hsl(150 55% 28% / 0.25);
+    --glow-secondary: 0 0 25px hsl(45 75% 55% / 0.5), 0 0 50px hsl(45 75% 55% / 0.25);
+    --glow-accent: 0 0 25px hsl(180 65% 48% / 0.5), 0 0 50px hsl(180 65% 48% / 0.25);
+    --glow-strong: 0 0 35px hsl(45 75% 55% / 0.6), 0 0 70px hsl(45 75% 55% / 0.35);
+    --glow-intense: 0 0 40px hsl(45 75% 55% / 0.8), 0 0 80px hsl(45 75% 55% / 0.5), 0 0 120px hsl(45 75% 55% / 0.25);
 
     /* Advanced Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(180 100% 55%), hsl(180 90% 45%), hsl(180 80% 35%));
-    --gradient-secondary: linear-gradient(135deg, hsl(270 85% 70%), hsl(270 75% 60%), hsl(270 65% 50%));
-    --gradient-cyber: linear-gradient(135deg, hsl(180 100% 55% / 0.3), hsl(270 85% 70% / 0.3), hsl(155 95% 60% / 0.2));
-    --gradient-mesh: radial-gradient(at 0% 0%, hsl(180 100% 55% / 0.15) 0, transparent 50%),
-                     radial-gradient(at 100% 0%, hsl(270 85% 70% / 0.15) 0, transparent 50%),
-                     radial-gradient(at 100% 100%, hsl(155 95% 60% / 0.15) 0, transparent 50%),
-                     radial-gradient(at 0% 100%, hsl(180 100% 55% / 0.15) 0, transparent 50%);
-    --gradient-accent: linear-gradient(135deg, hsl(155 95% 60%), hsl(155 85% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(150 55% 28%), hsl(150 50% 22%), hsl(150 45% 18%));
+    --gradient-secondary: linear-gradient(135deg, hsl(45 75% 55%), hsl(45 70% 48%), hsl(45 65% 42%));
+    --gradient-cyber: linear-gradient(135deg, hsl(150 55% 28% / 0.35), hsl(45 75% 55% / 0.35), hsl(180 65% 48% / 0.25));
+    --gradient-mesh: radial-gradient(at 0% 0%, hsl(150 55% 28% / 0.18) 0, transparent 50%),
+                     radial-gradient(at 100% 0%, hsl(45 75% 55% / 0.18) 0, transparent 50%),
+                     radial-gradient(at 100% 100%, hsl(180 65% 48% / 0.18) 0, transparent 50%),
+                     radial-gradient(at 0% 100%, hsl(150 55% 28% / 0.18) 0, transparent 50%);
+    --gradient-accent: linear-gradient(135deg, hsl(180 65% 48%), hsl(180 60% 38%));
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px hsl(218 45% 2% / 0.4);
-    --shadow-md: 0 4px 16px hsl(218 45% 2% / 0.5);
-    --shadow-lg: 0 8px 32px hsl(218 45% 2% / 0.6);
-    --shadow-xl: 0 12px 48px hsl(218 45% 2% / 0.7);
+    --shadow-sm: 0 2px 8px hsl(140 60% 2% / 0.5);
+    --shadow-md: 0 4px 16px hsl(140 60% 2% / 0.6);
+    --shadow-lg: 0 8px 32px hsl(140 60% 2% / 0.7);
+    --shadow-xl: 0 12px 48px hsl(140 60% 2% / 0.8);
 
     /* Sidebar Enhanced */
-    --sidebar-background: 218 45% 3%;
-    --sidebar-foreground: 180 100% 95%;
-    --sidebar-primary: 180 100% 55%;
-    --sidebar-primary-foreground: 218 45% 4%;
-    --sidebar-accent: 218 40% 12%;
-    --sidebar-accent-foreground: 180 100% 95%;
-    --sidebar-border: 218 35% 18%;
-    --sidebar-ring: 180 100% 55%;
+    --sidebar-background: 140 60% 6%;
+    --sidebar-foreground: 45 35% 90%;
+    --sidebar-primary: 150 55% 28%;
+    --sidebar-primary-foreground: 45 35% 90%;
+    --sidebar-accent: 150 40% 15%;
+    --sidebar-accent-foreground: 45 35% 90%;
+    --sidebar-border: 150 40% 20%;
+    --sidebar-ring: 45 75% 55%;
   }
 }
 
@@ -183,8 +183,8 @@ All colors MUST be HSL.
     height: 100%;
     background: repeating-linear-gradient(
       0deg,
-      hsla(180, 100%, 55%, 0.04) 0px,
-      hsla(180, 100%, 55%, 0.04) 1px,
+      hsla(45, 75%, 55%, 0.04) 0px,
+      hsla(45, 75%, 55%, 0.04) 1px,
       transparent 1px,
       transparent 3px
     );
@@ -202,7 +202,7 @@ All colors MUST be HSL.
     background: linear-gradient(
       to bottom,
       transparent,
-      hsla(180, 100%, 55%, 0.3),
+      hsla(45, 75%, 55%, 0.3),
       transparent
     );
     animation: scan 8s linear infinite;
