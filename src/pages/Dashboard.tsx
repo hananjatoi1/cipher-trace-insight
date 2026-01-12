@@ -1,6 +1,9 @@
 import { Globe, Wallet, Hash, User, Activity, ShieldAlert, Flag } from 'lucide-react';
 import { QuickSearchCard } from '@/components/QuickSearchCard';
 import { KPICard } from '@/components/KPICard';
+import { BlockchairAddressCard } from '@/components/BlockchairAddressCard';
+import { BlockchairTransactionCard } from '@/components/BlockchairTransactionCard';
+import { BlockchairLatestTxCard } from '@/components/BlockchairLatestTxCard';
 import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
@@ -51,6 +54,18 @@ export default function Dashboard() {
             onSearch={handleSearch('kyc')}
             restricted
           />
+        </div>
+      </div>
+
+      {/* Blockchair API Section */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4 text-foreground">Blockchain Analysis</h2>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+          <BlockchairAddressCard />
+          <BlockchairTransactionCard />
+        </div>
+        <div className="mt-4">
+          <BlockchairLatestTxCard />
         </div>
       </div>
 
