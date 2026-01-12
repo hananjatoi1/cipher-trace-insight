@@ -18,23 +18,33 @@ serve(async (req) => {
 
     const { action, address, txHash, chain = 'bitcoin' } = await req.json();
 
+    // Validate required parameters
+    if (!action) {
+      throw new Error('Action is required');
+    }
+
     let url: string;
     
     switch (action) {
       case 'address':
-        // Get address summary
-        url = `https://api.blockchair.com/${chain}/dashboards/address/${address}?key=${BLOCKCHAIR_API_KEY}`;
+        if (!address || !address.trim()) {
+          throw new Error('Address is required for address lookup');
+        }
+        url = `https://api.blockchair.com/${chain}/dashboards/address/${encodeURIComponent(address.trim())}?key=${BLOCKCHAIR_API_KEY}`;
         break;
       case 'transaction':
-        // Get transaction details
-        url = `https://api.blockchair.com/${chain}/dashboards/transaction/${txHash}?key=${BLOCKCHAIR_API_KEY}`;
+        if (!txHash || !txHash.trim()) {
+          throw new Error('Transaction hash is required for transaction lookup');
+        }
+        url = `https://api.blockchair.com/${chain}/dashboards/transaction/${encodeURIComponent(txHash.trim())}?key=${BLOCKCHAIR_API_KEY}`;
         break;
       case 'latest':
-        // Get latest transactions for an address
-        url = `https://api.blockchair.com/${chain}/dashboards/address/${address}?key=${BLOCKCHAIR_API_KEY}&limit=10&transaction_details=true`;
+        if (!address || !address.trim()) {
+          throw new Error('Address is required for latest transactions lookup');
+        }
+        url = `https://api.blockchair.com/${chain}/dashboards/address/${encodeURIComponent(address.trim())}?key=${BLOCKCHAIR_API_KEY}&limit=10&transaction_details=true`;
         break;
       case 'stats':
-        // Get blockchain stats
         url = `https://api.blockchair.com/${chain}/stats?key=${BLOCKCHAIR_API_KEY}`;
         break;
       default:
