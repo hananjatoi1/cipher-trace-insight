@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Hash, Search, ArrowDownLeft, ArrowUpRight, Clock, Check, Loader2 } from 'lucide-react';
 import { useBlockchair, TransactionData } from '@/hooks/useBlockchair';
 import { format } from 'date-fns';
+import { validateTransactionHash, validateChain, type Chain } from '@/lib/validation/blockchair';
 
 const CHAINS = [
   { value: 'bitcoin', label: 'Bitcoin' },
@@ -16,12 +17,28 @@ const CHAINS = [
 
 export function BlockchairTransactionCard() {
   const [txHash, setTxHash] = useState('');
-  const [chain, setChain] = useState('bitcoin');
+  const [chain, setChain] = useState<Chain>('bitcoin');
   const [data, setData] = useState<TransactionData | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
   const { loading, error, fetchTransactionDetails } = useBlockchair();
 
   const handleSearch = async () => {
-    if (!txHash.trim()) return;
+    setValidationError(null);
+    
+    // Validate chain
+    const chainValidation = validateChain(chain);
+    if (!chainValidation.success) {
+      setValidationError(chainValidation.error || 'Invalid chain');
+      return;
+    }
+    
+    // Validate transaction hash
+    const hashValidation = validateTransactionHash(txHash);
+    if (!hashValidation.success) {
+      setValidationError(hashValidation.error || 'Invalid transaction hash');
+      return;
+    }
+    
     const result = await fetchTransactionDetails(txHash.trim(), chain);
     setData(result);
   };
@@ -49,7 +66,7 @@ export function BlockchairTransactionCard() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex gap-2">
-          <Select value={chain} onValueChange={setChain}>
+          <Select value={chain} onValueChange={(value) => setChain(value as Chain)}>
             <SelectTrigger className="w-32 bg-background/50">
               <SelectValue />
             </SelectTrigger>
@@ -74,9 +91,9 @@ export function BlockchairTransactionCard() {
           </Button>
         </div>
 
-        {error && (
+        {(error || validationError) && (
           <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm">
-            {error}
+            {validationError || error}
           </div>
         )}
 

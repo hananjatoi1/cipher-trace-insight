@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Wallet, Search, Clock, Activity, DollarSign, Loader2 } from 'lucide-react';
 import { useBlockchair, AddressData } from '@/hooks/useBlockchair';
 import { format } from 'date-fns';
+import { validateAddress, validateChain, type Chain } from '@/lib/validation/blockchair';
 
 const CHAINS = [
   { value: 'bitcoin', label: 'Bitcoin' },
@@ -16,12 +17,28 @@ const CHAINS = [
 
 export function BlockchairAddressCard() {
   const [address, setAddress] = useState('');
-  const [chain, setChain] = useState('bitcoin');
+  const [chain, setChain] = useState<Chain>('bitcoin');
   const [data, setData] = useState<AddressData | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
   const { loading, error, fetchAddressSummary } = useBlockchair();
 
   const handleSearch = async () => {
-    if (!address.trim()) return;
+    setValidationError(null);
+    
+    // Validate chain
+    const chainValidation = validateChain(chain);
+    if (!chainValidation.success) {
+      setValidationError(chainValidation.error || 'Invalid chain');
+      return;
+    }
+    
+    // Validate address
+    const addressValidation = validateAddress(address, chain);
+    if (!addressValidation.success) {
+      setValidationError(addressValidation.error || 'Invalid address');
+      return;
+    }
+    
     const result = await fetchAddressSummary(address.trim(), chain);
     setData(result);
   };
@@ -45,7 +62,7 @@ export function BlockchairAddressCard() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex gap-2">
-          <Select value={chain} onValueChange={setChain}>
+          <Select value={chain} onValueChange={(value) => setChain(value as Chain)}>
             <SelectTrigger className="w-32 bg-background/50">
               <SelectValue />
             </SelectTrigger>
@@ -70,9 +87,9 @@ export function BlockchairAddressCard() {
           </Button>
         </div>
 
-        {error && (
+        {(error || validationError) && (
           <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm">
-            {error}
+            {validationError || error}
           </div>
         )}
 
