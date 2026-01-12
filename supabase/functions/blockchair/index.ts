@@ -24,44 +24,68 @@ serve(async (req) => {
     }
 
     let url: string;
+    let baseUrl: string;
+    
+    // Normalize chain name for API
+    const normalizedChain = chain.toLowerCase();
     
     switch (action) {
       case 'address':
         if (!address || !address.trim()) {
           throw new Error('Address is required for address lookup');
         }
-        url = `https://api.blockchair.com/${chain}/dashboards/address/${encodeURIComponent(address.trim())}?key=${BLOCKCHAIR_API_KEY}`;
+        baseUrl = `https://api.blockchair.com/${normalizedChain}/dashboards/address/${encodeURIComponent(address.trim())}`;
+        url = `${baseUrl}?key=${BLOCKCHAIR_API_KEY}`;
         break;
       case 'transaction':
         if (!txHash || !txHash.trim()) {
           throw new Error('Transaction hash is required for transaction lookup');
         }
-        url = `https://api.blockchair.com/${chain}/dashboards/transaction/${encodeURIComponent(txHash.trim())}?key=${BLOCKCHAIR_API_KEY}`;
+        baseUrl = `https://api.blockchair.com/${normalizedChain}/dashboards/transaction/${encodeURIComponent(txHash.trim())}`;
+        url = `${baseUrl}?key=${BLOCKCHAIR_API_KEY}`;
         break;
       case 'latest':
         if (!address || !address.trim()) {
           throw new Error('Address is required for latest transactions lookup');
         }
-        url = `https://api.blockchair.com/${chain}/dashboards/address/${encodeURIComponent(address.trim())}?key=${BLOCKCHAIR_API_KEY}&limit=10&transaction_details=true`;
+        baseUrl = `https://api.blockchair.com/${normalizedChain}/dashboards/address/${encodeURIComponent(address.trim())}`;
+        url = `${baseUrl}?key=${BLOCKCHAIR_API_KEY}&limit=10&transaction_details=true`;
         break;
       case 'stats':
-        url = `https://api.blockchair.com/${chain}/stats?key=${BLOCKCHAIR_API_KEY}`;
+        baseUrl = `https://api.blockchair.com/${normalizedChain}/stats`;
+        url = `${baseUrl}?key=${BLOCKCHAIR_API_KEY}`;
         break;
       default:
         throw new Error('Invalid action. Use: address, transaction, latest, or stats');
     }
 
-    console.log(`Fetching from Blockchair: ${action} for chain ${chain}`);
+    console.log(`Fetching from Blockchair: ${action} for chain ${normalizedChain}`);
+    console.log(`Request URL (without key): ${baseUrl}`);
     
     const response = await fetch(url);
+    const responseText = await response.text();
     
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Blockchair API error:', response.status, errorText);
+      console.error('Blockchair API error:', response.status);
+      // Check if it's a "not found" scenario vs actual API error
+      if (response.status === 404) {
+        throw new Error(`Resource not found. Please verify the ${action === 'transaction' ? 'transaction hash' : 'address'} is valid for ${normalizedChain}.`);
+      }
       throw new Error(`Blockchair API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      console.error('Failed to parse response:', responseText.substring(0, 500));
+      throw new Error('Invalid response from Blockchair API');
+    }
+    
+    // Check if the data contains valid results
+    if (data.context?.error) {
+      throw new Error(data.context.error);
+    }
 
     return new Response(JSON.stringify(data), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
